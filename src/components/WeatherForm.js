@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import './css/WeatherForm.css';
 import { isValidLocation } from '../utils/validator';
 
-function WeatherForm({
-    city, country, setCity, setCountry, isEditing, setIsEditing
-}) {
-    const isLoading = false;
+const WeatherForm = ({ city, country, setCity, setCountry, handleFetchWeather, isLoading, isEditing, setIsEditing }) => {
     const handleCityChange = (e) => {
         const inputValue = e.target.value;
         if (isValidLocation(inputValue)) {
@@ -25,6 +22,7 @@ function WeatherForm({
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        handleFetchWeather();
         setIsEditing(false);
     };
 
@@ -62,24 +60,26 @@ function WeatherForm({
                 <button
                     className="submit-button"
                     type="submit"
-                    disabled={!city || !country}
+                    disabled={isLoading || !city || !country}
                     aria-busy={isLoading}
                     aria-live="polite"
                 >
-                    {isLoading ? 'Loading...' : 'Get Weather'}
+                    {isLoading ? "Loading..." : "Get Weather"}
                 </button>
             </div>
         </form>
     );
-}
+};
 
 WeatherForm.propTypes = {
     city: PropTypes.string.isRequired,
     country: PropTypes.string.isRequired,
     setCity: PropTypes.func.isRequired,
     setCountry: PropTypes.func.isRequired,
+    handleFetchWeather: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     isEditing: PropTypes.bool.isRequired,
-    setIsEditing: PropTypes.func.isRequired
+    setIsEditing: PropTypes.func.isRequired,
 };
 
 export default WeatherForm;
