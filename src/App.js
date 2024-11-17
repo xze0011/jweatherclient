@@ -1,9 +1,14 @@
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Weather from './Pages/Weather';
 
 function App() {
   return (
     <div className="App">
-      this is my app
+      <Routes>
+        <Route path="/" element={<Weather />} />
+      </Routes>
     </div>
   );
 }
