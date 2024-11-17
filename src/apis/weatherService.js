@@ -7,6 +7,9 @@
 
 export const fetchWeatherData = async (city, country) => {
   try {
+    if (!process.env.REACT_APP_WEATHER_API_BASE_URL) throw new Error("Weather API base URL is not set");
+    if (!city || !country) throw new Error("City and country are required");
+
     const response = await fetch(`${process.env.REACT_APP_WEATHER_API_BASE_URL}/api/Weather?city=${city}&country=${country}`);
 
     if (!response.ok) {
