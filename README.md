@@ -24,7 +24,7 @@ This project requires [Node.js](https://nodejs.org/) and [npm](https://www.npmjs
 
 Before running the application, set up the environment configuration to connect to the Weather Finder API.
 
-**Note**: Duplicate the `.env.example` file and rename it to `.env` in the root directory.
+**Note**: Duplicate the `.env.example` file and rename it to `.env` in the root directory, By default, the URL uses port `5000` to match the API's running port. If you are not using `Docker` to start the API, be sure to adjust the URL in the .env file to match the actual port being used.
 
 In production, avoid committing sensitive data directly. Instead, use environment-specific configuration files (e.g., `.env.production`), server-side environment variables, or a secrets manager like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) to securely manage credentials.
 
@@ -47,7 +47,7 @@ npm start
 
 This command will start the application on http://localhost:3000, and the development server will automatically reload for any file changes.
 
-### Step 4: Build for Production
+### Step 4: Build for Production(Optional)
 ```sh
 npm run build
 ```
