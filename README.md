@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+![Weather Finder Client](./public/Weather_Finder.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
 
-## Available Scripts
+- A responsive web interface to retrieve and display real-time weather information based on user-input city and country.
+- Input validation and error handling to enhance user experience.
+- Displays weather data with a clean and user-friendly design.
 
-In the project directory, you can run:
+## Tech
 
-### `npm start`
+Weather Finder Client is built with the following technologies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **[React]** - A JavaScript library for building user interfaces.
+- **[HTML & CSS]** - Used to structure and style the application, making it responsive and user-friendly.
+- **[JavaScript]** - Core programming language for building the client logic.
+- **[ESLint]** - A tool for identifying and fixing code issues, maintaining code quality and consistency.
+- **[Jest]** - A testing framework for writing and running unit tests to ensure functionality and stability.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to Run
 
-### `npm test`
+This project requires [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) to be installed.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Step 1: Configure API Base URL
 
-### `npm run build`
+Before running the application, set up the environment configuration to connect to the Weather Finder API.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Note**: Duplicate the `.env.example` file and rename it to `.env` in the root directory.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In production, avoid committing sensitive data directly. Instead, use environment-specific configuration files (e.g., `.env.production`), server-side environment variables, or a secrets manager like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) to securely manage credentials.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Step 2: Install Dependencies
 
-### `npm run eject`
+Install the necessary dependencies for the project:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```sh
+# Install dependencies
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Step 3: Running the Development Server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Start the development server to view the application locally:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```sh
+npm start
+```
 
-## Learn More
+This command will start the application on http://localhost:3000, and the development server will automatically reload for any file changes.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Step 4: Build for Production
+```sh
+npm run build
+```
+This will output the production-ready files in the build folder, which can be deployed to any web server.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## How to Run Tests
+```sh
+npm test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Free Project, Hell Yeah!**
