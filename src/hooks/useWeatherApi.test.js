@@ -7,7 +7,7 @@ jest.mock('../apis/weatherService');
 
 describe('useWeatherApi', () => {
     const mockCity = 'Melbourne';
-    const mockCountry = 'Australia';
+    const mockCountry = 'AU';
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -40,7 +40,7 @@ describe('useWeatherApi', () => {
 
         expect(fetchWeatherData).toHaveBeenCalledWith(mockCity, mockCountry);
         expect(result.current.isLoading).toBe(false);
-        expect(result.current.weatherData).toBe('clear sky');
+        expect(result.current.weatherData).toStrictEqual({ "city": "Melbourne", "description": "clear sky" });
         expect(result.current.isSuccess).toBe(true);
         expect(result.current.error).toBe(null);
     });

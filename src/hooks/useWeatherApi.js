@@ -23,16 +23,23 @@ const useWeatherApi = () => {
     setError(null);
     setIsSuccess(false);
 
-    const result = await fetchWeatherData(city, country);
+    try {
+      const result = await fetchWeatherData(city, country);
 
-    if (result.isSuccessful) {
-      setWeatherData(result.description);
-      setIsSuccess(true);
-    } else {
-      setError(result.error);
+      if (result.isSuccessful) {
+        setWeatherData({
+          city,
+          description: result.description
+        });
+        setIsSuccess(true);
+      } else {
+        setError(result.error);
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return { weatherData, isLoading, error, isSuccess, getWeather };

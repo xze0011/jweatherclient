@@ -1,36 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './css/WeatherForm.css';
 import { isValidLocation } from '../utils/validator';
 
-const WeatherForm = ({ city, country, setCity, setCountry, handleFetchWeather, isLoading, isEditing, setIsEditing }) => {
+const WeatherForm = ({ handleFetchWeather, isLoading = false }) => {
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
+
     const handleCityChange = (e) => {
         const inputValue = e.target.value;
-        if (isValidLocation(inputValue)) {
-            if (!isEditing) setIsEditing(true);
+        // Only validate if the user starts entering a value
+        if (inputValue === '' || isValidLocation(inputValue)) {
             setCity(inputValue);
         }
     };
 
     const handleCountryChange = (e) => {
         const inputValue = e.target.value;
-        if (isValidLocation(inputValue)) {
-            if (!isEditing) setIsEditing(true);
+        // Only validate if the user starts entering a value
+        if (inputValue === '' || isValidLocation(inputValue)) {
             setCountry(inputValue);
         }
     };
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        handleFetchWeather();
-        setIsEditing(false);
+        handleFetchWeather(city, country);
     };
 
     return (
-        <form className="weather-form" onSubmit={handleFormSubmit} aria-labelledby="weatherFormTitle">
+        <form className="weather-form" onSubmit={handleFormSubmit} noValidate>
             <div className="input-group">
                 <div>
+                    <label htmlFor="cityInput">City: </label>
                     <input
+                        id="cityInput"
                         className="input-field"
                         type="text"
                         placeholder="Enter City"
@@ -44,7 +48,9 @@ const WeatherForm = ({ city, country, setCity, setCountry, handleFetchWeather, i
                     />
                 </div>
                 <div>
+                    <label htmlFor="countryInput">Country: </label>
                     <input
+                        id="countryInput"
                         className="input-field"
                         type="text"
                         placeholder="Enter Country"
@@ -62,7 +68,6 @@ const WeatherForm = ({ city, country, setCity, setCountry, handleFetchWeather, i
                     type="submit"
                     disabled={isLoading || !city || !country}
                     aria-busy={isLoading}
-                    aria-live="polite"
                 >
                     {isLoading ? "Loading..." : "Get Weather"}
                 </button>
@@ -72,14 +77,8 @@ const WeatherForm = ({ city, country, setCity, setCountry, handleFetchWeather, i
 };
 
 WeatherForm.propTypes = {
-    city: PropTypes.string.isRequired,
-    country: PropTypes.string.isRequired,
-    setCity: PropTypes.func.isRequired,
-    setCountry: PropTypes.func.isRequired,
     handleFetchWeather: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    isEditing: PropTypes.bool.isRequired,
-    setIsEditing: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool,
 };
 
 export default WeatherForm;

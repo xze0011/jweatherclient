@@ -6,21 +6,22 @@ import { formatCityName } from "../utils/tools";
 /**
  * WeatherOutput component displays the weather data or error message.
  */
-const WeatherOutput = ({ weatherData = '', city = '', error = '', isSuccess, isEditing }) => {
+const WeatherOutput = ({ weatherData, error = '', isSuccess }) => {
+  const { city = '', description = '' } = weatherData || {};
   const formattedCity = formatCityName(city);
 
   return (
-    <div className="weather-output" aria-live="polite" aria-atomic="true">
-      {!isEditing && isSuccess && weatherData && !error && (
-        <div className="success-message" role="status">
+    <div className="weather-output">
+      {isSuccess && description && city && !error && (
+        <div className="success-message">
           <p>
-            It&apos;s currently <span className="weather-description">{weatherData}</span> in{' '}
+            It&apos;s currently <span className="weather-description">{description}</span> in{' '}
             <span className="city-name">{formattedCity}</span>.
           </p>
         </div>
       )}
       {error && (
-        <div className="error-message" role="alert" aria-live="assertive">
+        <div className="error-message" role="alert">
           {error}
         </div>
       )}
@@ -29,11 +30,12 @@ const WeatherOutput = ({ weatherData = '', city = '', error = '', isSuccess, isE
 };
 
 WeatherOutput.propTypes = {
-  weatherData: PropTypes.string,
-  city: PropTypes.string,
+  weatherData: PropTypes.shape({
+    city: PropTypes.string,
+    description: PropTypes.string,
+  }),
   error: PropTypes.string,
   isSuccess: PropTypes.bool.isRequired,
-  isEditing: PropTypes.bool.isRequired,
 };
 
 export default WeatherOutput;

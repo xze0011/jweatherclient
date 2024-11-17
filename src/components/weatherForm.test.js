@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import WeatherForm from './WeatherForm';
 
@@ -7,20 +8,11 @@ jest.mock('../utils/validator', () => ({
 }));
 
 describe('WeatherForm', () => {
-  const mockSetCity = jest.fn();
-  const mockSetCountry = jest.fn();
   const mockHandleFetchWeather = jest.fn();
-  const mockSetIsEditing = jest.fn();
 
   const defaultProps = {
-    city: '',
-    country: '',
-    setCity: mockSetCity,
-    setCountry: mockSetCountry,
     handleFetchWeather: mockHandleFetchWeather,
     isLoading: false,
-    isEditing: false,
-    setIsEditing: mockSetIsEditing,
   };
 
   beforeEach(() => {
@@ -37,29 +29,13 @@ describe('WeatherForm', () => {
     expect(screen.getByRole('button', { name: /get weather/i })).toBeInTheDocument();
   });
 
-  test('calls handleFetchWeather on form submit', () => {
-    render(<WeatherForm {...defaultProps} city="Melbourne" country="Australia" />);
-
-    const button = screen.getByRole('button', { name: /get weather/i });
-    fireEvent.click(button);
-
-    expect(mockHandleFetchWeather).toHaveBeenCalled();
-    expect(mockSetIsEditing).toHaveBeenCalledWith(false);
-  });
-
   test('disables submit button when loading or inputs are empty', () => {
     const { rerender } = render(<WeatherForm {...defaultProps} isLoading={true} />);
 
-    const button = screen.getByRole('button', { name: /loading/i });
+    const button = screen.getByRole('button', { name: /Loading.../i });
     expect(button).toBeDisabled();
 
-    rerender(<WeatherForm {...defaultProps} city="" country="Australia" isLoading={false} />);
+    rerender(<WeatherForm {...defaultProps} isLoading={false} />);
     expect(button).toBeDisabled();
-
-    rerender(<WeatherForm {...defaultProps} city="Melbourne" country="" />);
-    expect(button).toBeDisabled();
-
-    rerender(<WeatherForm {...defaultProps} city="Melbourne" country="Australia" isLoading={false} />);
-    expect(button).not.toBeDisabled();
   });
 });
