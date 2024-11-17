@@ -48,17 +48,19 @@ npm start
 This command will start the application on http://localhost:3000, and the development server will automatically reload for any file changes.
 
 ### Step 4: Build for Production(Optional)
+
 ```sh
 npm run build
 ```
-This will output the production-ready files in the build folder, which can be deployed to any web server.
 
+This will output the production-ready files in the build folder, which can be deployed to any web server or AWS S3 + Cloudfront.
 
 ## How to Run Tests
+
 ```sh
 npm test
 ```
 
 ## License
 
-**Free Project, Hell Yeah!**
+MIT
