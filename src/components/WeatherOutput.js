@@ -15,7 +15,7 @@ const WeatherOutput = ({ weatherData, error = '', isSuccess }) => {
       {isSuccess && description && city && !error && (
         <div className="success-message">
           <p>
-            It&apos;s currently <span className="weather-description">{description}</span> in{' '}
+            It&apos;s currently 1 <span className="weather-description">{description}</span> in{' '}
             <span className="city-name">{formattedCity}</span>.
           </p>
         </div>
